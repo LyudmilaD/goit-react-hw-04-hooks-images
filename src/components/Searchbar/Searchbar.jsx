@@ -1,55 +1,49 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Notiflix from 'notiflix';
 
 import styles from '../App.module.css';
 
-export class Searchbar extends Component {
-  state = {
-    input: '',
-  };
-  static propTypes = {
-    changeSearch: PropTypes.func.isRequired,
+export const Searchbar = ({ changeSearch }) => {
+  const [input, setInput] = useState('');
+
+  const handleSearch = element => {
+    setInput(element.currentTarget.value.toLowerCase());
   };
 
-  handleSearch = element => {
-    this.setState({ input: element.currentTarget.value.toLowerCase() });
-  };
-
-  onSubmit = element => {
+  const onSubmit = element => {
     element.preventDefault();
-    const { input } = this.state;
-    const { changeSearch } = this.props;
     if (input.trim() === '') {
       return Notiflix.Notify.failure(
         'Please enter your query in query text box.'
       );
     }
-
     changeSearch(input);
   };
 
-  render() {
-    const { input } = this.state;
-    return (
-      <header className={styles.searchbar}>
-        <form className={styles.form} onSubmit={this.onSubmit}>
-          <input
-            className={styles.input}
-            type="text"
-            autoComplete="off"
-            autoFocus
-            value={input}
-            onChange={this.handleSearch}
-            placeholder="Search images and photos"
-          />
+  return (
+    <header className={styles.searchbar}>
+      <form className={styles.form} onSubmit={onSubmit}>
+        <input
+          className={input}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          value={input}
+          onChange={handleSearch}
+          placeholder="Search images and photos"
+        />
 
-          <button type="submit" className={styles.button}>
-            <span className={styles.buttonLabel}>Search</span>
-          </button>
-        </form>
-      </header>
-    );
-  }
-}
+        <button type="submit" className={styles.button}>
+          <span className={styles.buttonLabel}>Search</span>
+        </button>
+      </form>
+    </header>
+  );
+};
+
+Searchbar.propTypes = {
+  changeSearch: PropTypes.func.isRequired,
+};
+
 export default Searchbar;
