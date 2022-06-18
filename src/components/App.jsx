@@ -87,11 +87,7 @@ export const App = () => {
         <Button handleLoadMore={handleLoadMore} />
       )}
       {isModal && (
-        <Modal
-          modalImg={modalImg}
-          onCloseModal={this.toggleModal}
-          tags={tags}
-        />
+        <Modal modalImg={modalImg} onCloseModal={toggleModal} tags={tags} />
       )}
       {error && <>{error.message}</>}
     </div>

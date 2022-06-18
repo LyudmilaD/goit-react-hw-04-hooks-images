@@ -25,7 +25,7 @@ export const Searchbar = ({ changeSearch }) => {
     <header className={styles.searchbar}>
       <form className={styles.form} onSubmit={onSubmit}>
         <input
-          className={input}
+          className={styles.input}
           type="text"
           autoComplete="off"
           autoFocus
