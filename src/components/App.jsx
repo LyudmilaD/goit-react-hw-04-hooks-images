@@ -68,7 +68,7 @@ export const App = () => {
     setPage(1);
     setImages([]);
   };
-  const handleLoadMore = element => {
+  const handleLoadMore = () => {
     setPage(page + 1);
   };
 
