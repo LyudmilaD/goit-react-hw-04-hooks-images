@@ -56,7 +56,7 @@ export const App = () => {
           );
         }
 
-        setImages(images => [images, ...pictures]);
+        setImages(images => [...images, ...pictures]);
         setTotalImg(images.totalHits);
       })
 
